@@ -1,7 +1,37 @@
-# 01_analysis.R: models and figures for the antibiotic prescribing project
-# Before running: set the working directory to the project folder, and type
-#   Sys.setenv(PGPASSWORD = 'your-password')
-# in the Console.
+# ==============================================================================
+# Antibiotic Prescribing in English General Practice
+# Analysis period: August 2025 – July 2026
+#
+# Purpose:
+# This script analyses practice-level antibiotic prescribing data in England.
+# It produces descriptive summaries, regression models, diagnostic checks
+# and visualisations to examine variation in prescribing across deprivation
+# quintiles and Integrated Care Boards (ICBs).
+#
+# Data inputs:
+# The script retrieves prepared analytical datasets from a local PostgreSQL
+# database:
+#   - v_practice_rank: practice-level prescribing and deprivation data
+#   - v_monthly_national: monthly national prescribing totals
+#   - v_icb_summary: prescribing summaries by ICB
+#
+# Analysis:
+#   1. Descriptive summaries by deprivation quintile
+#   2. Negative binomial regression for antibiotic prescribing rates
+#   3. Quasibinomial regression for broad-spectrum prescribing share
+#   4. Model diagnostics and sensitivity analysis
+#   5. Figures and CSV outputs
+#
+# Before running:
+#   1. Set the working directory to the project folder.
+#   2. Set the PostgreSQL password in the R Console:
+#      Sys.setenv(PGPASSWORD = 'your-password')
+#
+# Sensitivity analysis:
+# Set exclude_y to TRUE to exclude practices whose codes start with Y.
+# Outputs are saved to outputs_sensitivity_no_Y/ rather than outputs/.
+#
+# ============================================================================== 
 
 library(DBI)
 library(RPostgres)
