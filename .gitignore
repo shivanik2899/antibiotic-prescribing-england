@@ -1,0 +1,29 @@
+# Raw and exported data
+data_raw/
+export/
+
+# Database files
+db/*.duckdb
+db/*.duckdb.wal
+
+# R temporary files
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# Quarto temporary files
+.quarto/
+
+# Mac system files
+.DS_Store
+
+# Credentials
+.env
+.Renviron
+*.pem
+*.key
+
+# Temporary files
+*.log
+*.tmp
